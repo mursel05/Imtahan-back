@@ -82,8 +82,18 @@ exports.getExamById = async (req, res) => {
 
 exports.getExams = async (req, res) => {
   try {
-    const exams = await Exam.find({ writer: req.userId });
-    res.status(200).json({ success: true, exams });
+    let exams = [];
+    if (req.params.category == "all") {
+      exams = await Exam.find({ active: true });
+    } else if (req.params.category == "writer") {
+      exams = await Exam.find({ writer: req.userId });
+    } else {
+      exams = await Exam.find({
+        subject: req.params.category,
+        active: true,
+      });
+    }
+    return res.status(200).json({ success: true, exams });
   } catch (error) {
     res.status(400).json({ success: false, message: "Xəta baş verdi" });
   }

@@ -80,6 +80,7 @@ exports.login = async (req, res) => {
       res.status(404).json({ success: false, message: "Hesab tapılmadı" });
     }
   } catch (error) {
+    console.log(error);
     res.status(400).json({ success: false, message: "Xəta baş verdi" });
   }
 };

@@ -1,39 +1,4 @@
 exports.questionDoc = {
-  "/exams": {
-    get: {
-      summary: "Get all exams of the authenticated user",
-      tags: ["Exams"],
-      responses: {
-        200: { description: "List of exams" },
-        400: { description: "Error occurred" },
-      },
-    },
-    post: {
-      summary: "Create an exam",
-      tags: ["Exams"],
-      requestBody: {
-        required: true,
-        content: {
-          "application/json": {
-            schema: {
-              type: "object",
-              properties: {
-                name: { type: "string" },
-                description: { type: "string" },
-                subject: { type: "string" },
-                accessLevel: { type: "string" },
-              },
-              required: ["name", "subject", "accessLevel"],
-            },
-          },
-        },
-      },
-      responses: {
-        201: { description: "Exam created" },
-        400: { description: "Error occurred" },
-      },
-    },
-  },
   "/questions": {
     post: {
       summary: "Add a question to an exam",

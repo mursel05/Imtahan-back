@@ -1,36 +1,46 @@
 exports.examDoc = {
-  "/exams": {
+  "/exams/{category}": {
     get: {
-      summary: "Get all exams of the authenticated user",
+      summary: "Get all exams",
       tags: ["Exams"],
+      parameters: [
+        {
+          name: "category",
+          in: "path",
+          required: true,
+          schema: { type: "string" },
+        },
+      ],
       responses: {
         200: { description: "List of exams" },
         400: { description: "Error occurred" },
       },
     },
-    post: {
-      summary: "Create an exam",
-      tags: ["Exams"],
-      requestBody: {
-        required: true,
-        content: {
-          "application/json": {
-            schema: {
-              type: "object",
-              properties: {
-                name: { type: "string" },
-                description: { type: "string" },
-                subject: { type: "string" },
-                accessLevel: { type: "string" },
+    "/exams": {
+      post: {
+        summary: "Create an exam",
+        tags: ["Exams"],
+        requestBody: {
+          required: true,
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                properties: {
+                  name: { type: "string" },
+                  description: { type: "string" },
+                  subject: { type: "string" },
+                  accessLevel: { type: "string" },
+                },
+                required: ["name", "subject", "accessLevel"],
               },
-              required: ["name", "subject", "accessLevel"],
             },
           },
         },
-      },
-      responses: {
-        201: { description: "Exam created" },
-        400: { description: "Error occurred" },
+        responses: {
+          201: { description: "Exam created" },
+          400: { description: "Error occurred" },
+        },
       },
     },
   },
