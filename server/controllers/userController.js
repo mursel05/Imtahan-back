@@ -64,12 +64,10 @@ exports.login = async (req, res) => {
           res.cookie("refreshToken", tokens.refreshToken, {
             httpOnly: true,
             maxAge: process.env.REFRESH_TOKEN_EXPIRES_IN * 1000,
-            domain: process.env.DOMAIN,
           });
           res.cookie("accessToken", tokens.accessToken, {
             httpOnly: true,
             maxAge: process.env.ACCESS_TOKEN_EXPIRES_IN * 1000,
-            domain: process.env.DOMAIN,
           });
           res.status(200).json({ success: true });
         } else {
