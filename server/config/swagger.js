@@ -17,6 +17,10 @@ const swaggerOptions = {
         url: "http://localhost:5000/api",
         description: "Local server",
       },
+      {
+        url: "http://51.8.13.48/api",
+        description: "Local server",
+      },
     ],
     paths: {
       ...userDoc,
