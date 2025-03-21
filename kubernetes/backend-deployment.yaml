@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: imtahan.azurecr.io/backend:04bd850ff0a4a0ae618e1b401887ddfc0b1500ca
+          ports:
+            - containerPort: 5000
+          env:
+            - name: PORT
+              value: "5000"
+            - name: MONGO_URL
+              valueFrom:
+                secretKeyRef:
+                  name: auth-secret
+                  key: MONGO_URL
+            - name: JWT_ACCESS_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: auth-secret
+                  key: JWT_ACCESS_SECRET_KEY
+            - name: JWT_REFRESH_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: auth-secret
+                  key: JWT_REFRESH_SECRET_KEY
+            - name: CRYPTO_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: auth-secret
+                  key: CRYPTO_SECRET_KEY
+            - name: ACCESS_TOKEN_EXPIRES_IN
+              valueFrom:
+                secretKeyRef:
+                  name: auth-secret
+                  key: ACCESS_TOKEN_EXPIRES_IN
+            - name: REFRESH_TOKEN_EXPIRES_IN
+              valueFrom:
+                secretKeyRef:
+                  name: auth-secret
+                  key: REFRESH_TOKEN_EXPIRES_IN
+            - name: COMPANY_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: auth-secret
+                  key: COMPANY_EMAIL
+            - name: COMPANY_EMAIL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: auth-secret
+                  key: COMPANY_EMAIL_PASSWORD
+            - name: CLIENT_URL
+              valueFrom:
+                secretKeyRef:
+                  name: auth-secret
+                  key: CLIENT_URL
