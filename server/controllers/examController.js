@@ -74,7 +74,7 @@ exports.getExamById = async (req, res) => {
     }
     const questions = await Question.find({ id: { $in: exam.questions } });
     exam.questions = questions;
-    res.status(200).json({ success: true, exam });
+    res.status(200).json({ success: true, data: exam });
   } catch (error) {
     res.status(400).json({ success: false, message: "Xəta baş verdi" });
   }
@@ -93,7 +93,7 @@ exports.getExams = async (req, res) => {
         active: true,
       });
     }
-    return res.status(200).json({ success: true, exams });
+    return res.status(200).json({ success: true, data: exams });
   } catch (error) {
     res.status(400).json({ success: false, message: "Xəta baş verdi" });
   }
@@ -120,7 +120,7 @@ exports.createExam = async (req, res) => {
       createdAt: new Date(),
       updatedAt: new Date(),
     });
-    res.status(201).json({ success: true, exam });
+    res.status(201).json({ success: true, data: exam });
   } catch (error) {
     res.status(400).json({ success: false, message: "Xəta baş verdi" });
   }

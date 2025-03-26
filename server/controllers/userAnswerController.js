@@ -6,7 +6,7 @@ exports.addUserAnswer = async (req, res) => {
   try {
     const exam = Exam.findOne({ id: req.body.examId });
     if (!exam) {
-      res.status(404).json({
+      return res.status(404).json({
         success: false,
         message: "İmtahan tapılmadı",
       });
@@ -40,11 +40,11 @@ exports.addUserAnswer = async (req, res) => {
 exports.getUserAnswer = async (req, res) => {
   try {
     const userAnswer = await UserAnswer.findOne({
-      examId: req.body.examId,
+      examId: req.params.examId,
       userId: req.userId,
     });
     if (!userAnswer) {
-      res.status(404).json({
+      return res.status(404).json({
         success: false,
         message: "İstifadəçinin cavabı tapılmadı",
       });

@@ -14,6 +14,9 @@ exports.register = async (req, res) => {
         .status(400)
         .json({ success: false, message: "Hesab artıq mövcuddur" });
     } else {
+      if (req.body.role !== "student" && req.body.role !== "teacher") {
+        return res.status(400).json({ success: false, message: "Yanlış rol" });
+      }
       const newUser = new User({
         id: uuidv4(),
         name: req.body.name,

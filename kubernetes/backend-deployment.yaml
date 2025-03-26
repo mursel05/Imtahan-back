@@ -15,6 +15,7 @@ spec:
       containers:
         - name: backend
           image: imtahan.azurecr.io/backend:04bd850ff0a4a0ae618e1b401887ddfc0b1500ca
+          imagePullPolicy: Always
           ports:
             - containerPort: 5000
           env:

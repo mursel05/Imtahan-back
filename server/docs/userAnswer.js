@@ -22,7 +22,7 @@ exports.userAnswerdoc = {
                     required: ["questionId", "answer"],
                   },
                 },
-                score: { type: "string" },
+                score: { type: "number" },
               },
               required: ["examId", "answers", "score"],
             },
@@ -30,31 +30,25 @@ exports.userAnswerdoc = {
         },
       },
       responses: {
-        200: { description: "Question added" },
+        200: { description: "User answer added" },
         400: { description: "Error occurred" },
       },
     },
   },
-  "/user-answers/get-answer": {
-    post: {
+  "/user-answers/{id}": {
+    get: {
       summary: "Get user answer",
       tags: ["User answers"],
-      requestBody: {
-        required: true,
-        content: {
-          "application/json": {
-            schema: {
-              type: "object",
-              properties: {
-                examId: { type: "string" },
-              },
-              required: ["examId"],
-            },
-          },
+      parameters: [
+        {
+          name: "id",
+          in: "path",
+          required: true,
+          schema: { type: "string" },
         },
-      },
+      ],
       responses: {
-        200: { description: "Question added" },
+        200: { description: "User answer details" },
         400: { description: "Error occurred" },
       },
     },

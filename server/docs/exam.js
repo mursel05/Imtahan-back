@@ -16,35 +16,35 @@ exports.examDoc = {
         400: { description: "Error occurred" },
       },
     },
-    "/exams": {
-      post: {
-        summary: "Create an exam",
-        tags: ["Exams"],
-        requestBody: {
-          required: true,
-          content: {
-            "application/json": {
-              schema: {
-                type: "object",
-                properties: {
-                  name: { type: "string" },
-                  description: { type: "string" },
-                  subject: { type: "string" },
-                  accessLevel: { type: "string" },
-                },
-                required: ["name", "subject", "accessLevel"],
+  },
+  "/exams": {
+    post: {
+      summary: "Create an exam",
+      tags: ["Exams"],
+      requestBody: {
+        required: true,
+        content: {
+          "application/json": {
+            schema: {
+              type: "object",
+              properties: {
+                name: { type: "string" },
+                description: { type: "string" },
+                subject: { type: "string" },
+                accessLevel: { type: "number" },
               },
+              required: ["name", "subject", "accessLevel"],
             },
           },
         },
-        responses: {
-          201: { description: "Exam created" },
-          400: { description: "Error occurred" },
-        },
+      },
+      responses: {
+        201: { description: "Exam created" },
+        400: { description: "Error occurred" },
       },
     },
   },
-  "/exams/{id}": {
+  "/exams/id/{id}": {
     get: {
       summary: "Get an exam by ID",
       tags: ["Exams"],

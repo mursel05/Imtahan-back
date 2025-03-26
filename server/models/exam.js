@@ -19,7 +19,6 @@ const ExamSchema = new Schema({
   writer: {
     type: String,
     required: true,
-    unique: true,
   },
   createdAt: {
     type: Date,
@@ -36,7 +35,7 @@ const ExamSchema = new Schema({
   },
   accessLevel: {
     //how many questions are free
-    type: String,
+    type: Number,
     required: true,
   },
   subject: {
